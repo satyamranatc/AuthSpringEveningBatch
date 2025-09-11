@@ -1,5 +1,8 @@
 package com.example.backend.Controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -8,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
+import com.example.backend.Config.JwtUtil;
 import com.example.backend.Models.UserModel;
 import com.example.backend.Repo.UserRepo;
 
@@ -22,6 +25,9 @@ public class UserController {
 
     @Autowired
     PasswordEncoder passwordEncoder;
+
+    @Autowired
+    JwtUtil jwtUtil;
     
 
     @PostMapping("/login")
@@ -43,10 +49,15 @@ public class UserController {
     }
     
     @PostMapping("/register")
-    public String register(@RequestBody UserModel body) {
+    public Map register(@RequestBody UserModel body) {
         body.setPassword(passwordEncoder.encode(body.getPassword()));
-        userRepo.save(body);
-        return "registered";
+
+        HashMap UserData = new HashMap<>();
+
+        UserData.put("user", userRepo.save(body));
+        UserData.put("token", jwtUtil.generateToken(body.getUsername()));
+
+        return UserData;
     }
     
 }

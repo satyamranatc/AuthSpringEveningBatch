@@ -1,6 +1,8 @@
 package com.example.backend.Models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
@@ -17,6 +19,9 @@ public class UserModel {
     private String fullName;
     private int age;
     private String username;
+    
+    // JSONIGNORE:
+    @JsonIgnore
     private String password;
 
     public UserModel(String avatar, String fullName, int age, String username, String password) {
