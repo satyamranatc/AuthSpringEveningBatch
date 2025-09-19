@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auth</title>
+    <style>
+        /* Basic CSS Boilerplate */
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
+        
+        body {
+          font-family: Arial, sans-serif;
+          background-color: #f9f9f9;
+          color: #333;
+        }
+
+        main
+        {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            column-gap: 2rem;
+        }
+
+        #LoginFormSection
+        {
+            height: 300px;
+            width: 450px;
+            padding: 10px 20px;
+            background-color: black;
+            color: white;
+            border-radius: 11px;
+             display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        #SignUpFormSection
+        {
+            height: 300px;
+            width: 450px;
+            padding: 10px 20px;
+            background-color: black;
+            color: white;
+            border-radius: 11px;
+               display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+
+        #SignUpFormSection div
+        {
+           width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        input
+        {
+            padding: 10px 20px;
+            border-radius: 11px;
+        }
+
+        button
+        {
+            padding: 10px 20px;
+            border-radius: 11px;
+            background-color: white;
+            color: black;
+            cursor: pointer;
+            border: none;
+            margin-top: 10px;
+            float: right;
+
+        }
+
+         nav
+        {
+            background-color: ghostwhite;
+            color: black;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        nav ul
+        {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;  
+            column-gap: 20px;
+        }
+        
+        a
+        {
+            text-decoration: none;
+            color: black;
+        }
+
+    </style>
+</head>
+<body>
+
+    <center>
+        <h1>Auth</h1>
+    </center>
+
+      <nav>
+        <h2>Auth Spring App</h2>
+        <ul>
+
+        </ul>
+    </nav>
+
+    <main>
+        <div id="LoginFormSection">
+            <form id = "LoginForm">
+                <div>
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username">
+                </div>
+                <div>
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password">
+                </div>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+        <div id="SignUpFormSection">
+            <form id = "SignUpForm">
+                <div>
+                    <label for="fullName">Full Name:</label>
+                    <input type="text" id="fullName" name="fullName">
+                </div>
+                <div>
+                    <label for="age">Age:</label>
+                    <input type="number" id="age" name="age">
+                </div>
+                <div>
+                    <label for="avatar">Avatar:</label>
+                    <input type="text" id="avatar" name="avatar">
+                </div>
+                <div>
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username">
+                </div>
+                <div>
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password">
+                </div>
+                <button type="submit">Sign Up</button>
+            </form>
+
+        </div>
+
+
+    </main>
+    
+</body>
+<script src="./Auth.js"></script>
+</html>

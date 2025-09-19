@@ -28,36 +28,36 @@ public class UserController {
 
     @Autowired
     JwtUtil jwtUtil;
-    
 
     @PostMapping("/login")
-    public UserModel login(@RequestBody UserModel body) {
+    public Map<String, Object> login(@RequestBody UserModel body) {
         String username = body.getUsername();
         String password = body.getPassword();
 
-        if(username == null || password == null) {
-            return null;
+        UserModel user = userRepo.findByUsername(username);
+
+        if (user != null && passwordEncoder.matches(password, user.getPassword())) {
+            String token = jwtUtil.generateToken(username);
+            Map<String, Object> response = new HashMap<>();
+            response.put("userData", user);
+            response.put("token", token);
+            return response;
         }
 
-        userRepo.findAll().forEach(user -> {
-            if(user.getUsername().equals(username) && user.getPassword().equals(password)) {
-                return;
-            }
-        });
-
-        return null;
+        throw new RuntimeException("Invalid username or password");
     }
-    
+
     @PostMapping("/register")
     public Map register(@RequestBody UserModel body) {
+
         body.setPassword(passwordEncoder.encode(body.getPassword()));
 
         HashMap UserData = new HashMap<>();
 
-        UserData.put("user", userRepo.save(body));
+        UserData.put("userData", userRepo.save(body));
         UserData.put("token", jwtUtil.generateToken(body.getUsername()));
 
         return UserData;
     }
-    
+
 }

@@ -20,8 +20,7 @@ public class UserModel {
     private int age;
     private String username;
     
-    // JSONIGNORE:
-    @JsonIgnore
+
     private String password;
 
     public UserModel(String avatar, String fullName, int age, String username, String password) {

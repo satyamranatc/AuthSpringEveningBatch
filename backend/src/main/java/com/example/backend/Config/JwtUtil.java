@@ -20,7 +20,37 @@ public class JwtUtil {
         .signWith(SignatureAlgorithm.HS256,SECRET_KEY)
         .compact();
         return token;
+    }
 
+    public String extractUserName(String token)
+    {
+        String extractedUserName = Jwts.parserBuilder()
+        .setSigningKey(SECRET_KEY)
+        .build()
+        .parseClaimsJws(token)
+        .getBody()
+        .getSubject();
+        
+        return extractedUserName;
+    }
+
+
+    public boolean extractExpiration(String token)
+    {
+        boolean tokenExpiration = Jwts.parserBuilder()
+        .setSigningKey(SECRET_KEY)
+        .build()
+        .parseClaimsJws(token)
+        .getBody()
+        .getExpiration()
+        .before(new Date());
+        return tokenExpiration;
+    }
+
+    public boolean validateToken(String token) {
+        String extractedUsername = extractUserName(token);
+        return extractedUsername != null && !extractExpiration(token);
+        
     }
 
 
