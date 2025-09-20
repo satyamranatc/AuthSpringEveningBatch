@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile</title>
+    <title>Movies</title>
     <style>
         /* Basic CSS Boilerplate */
         * {
@@ -17,8 +17,9 @@
           background-color: #f9f9f9;
           color: #333;
         }
+
         nav
-         {
+        {
             background-color: ghostwhite;
             color: black;
             padding: 10px 20px;
@@ -41,20 +42,6 @@
             color: black;
         }
 
-        nav ul li:last-child
-        {
-            display: flex;
-            align-items: center;
-            column-gap: 10px;
-        }
-
-        nav ul li:last-child img
-        {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-        }
-
         main
         {
             height: 90vh;
@@ -67,15 +54,16 @@
             margin-bottom: 10px;
             font-size: 4vmax;
         }
-        button
+        #Movies
         {
-            padding: 10px 20px;
-            border-radius: 11px;
-            background-color: rgb(255, 0, 106);
-            color: white;
-            cursor: pointer;
-            border: none;
-            margin-top: 10px;
+            display: flex;
+            flex-direction: column;
+            row-gap: 10px;
+            column-gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 30px;
+
         }
     </style>
 </head>
@@ -87,11 +75,17 @@
 
         </ul>
     </nav>
-    <center>
-        <h1>Profile</h1>
-        <button onclick="logout()" >Logout</button>
-    </center>
+
+    <main>
+        <center>
+            <h1>Movies</h1>
+            <p>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aut, incidunt dignissimos cumque itaque, culpa expedita sapiente aperiam nemo eaque ducimus impedit quo repudiandae? Sed accusantium ullam aut? Architecto, praesentium pariatur?
+            </p>
+        </center>
+        <div id="Movies"></div>
+    </main>
     
 </body>
-<script src="./Profile.js"></script>
+<script src="./Movies.js"></script>
 </html>

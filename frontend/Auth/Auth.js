@@ -41,17 +41,72 @@ LoginForm.addEventListener("submit",async (e)=>{
 
     console.log(loginData);
 
-    let Res = fetch("http://localhost:8080/login",{
+    let Res = await fetch("http://localhost:8080/api/auth/login",{
         method:"POST",
         headers: {
             "Content-Type": "application/json"
         },
         body:JSON.stringify(loginData)
     })
+    Res = await Res.json();
+    console.log(Res)
+    
+    if (Res.userData)
+    {
+       
+           let UserData = {
+             "userInfo":Res.userData,
+            "token":Res.token
+        }
+        localStorage.setItem("UserData",JSON.stringify(UserData));
+        // window.location.href = "./Profile.html";
+    }
+    else
+    {
+        alert("Invalid username or password!");
+    }
 
-    localStorage.setItem("UserData",JSON.stringify(loginData));
+    
+})
 
-    window.location.href = "./Profile.html";
+
+SignUpForm.addEventListener("submit",async (e)=>{
+    e.preventDefault();
+
+    let signUpData = {
+        avatar: document.getElementById("avatar").value,
+        fullName: document.getElementById("fullName").value,
+        age: document.getElementById("age").value,
+        username: document.getElementById("S_username").value,
+        password: document.getElementById("S_password").value
+    }
+
+    console.log(signUpData);
+
+    let Res = await fetch("http://localhost:8080/api/auth/register",{
+        method:"POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body:JSON.stringify(signUpData)
+    })
+    Res = await Res.json();
+    console.log(Res);
+
+   if (Res.userData)
+    {
+           
+        let UserData = {
+             "userInfo":Res.userData,
+            "token":Res.token
+        }
+        localStorage.setItem("UserData",JSON.stringify(UserData));
+        window.location.href = "./Profile.html";
+    }
+    else
+    {
+        alert("Invalid Credentials!");
+    }
 
     
 })

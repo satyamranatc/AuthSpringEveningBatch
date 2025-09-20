@@ -13,6 +13,10 @@ window.addEventListener("DOMContentLoaded",()=>{
             <li><a href="../Home/Home.html">Home</a></li>
             <li><a href="../Movies/Movies.html">Movies</a></li>
             <li><a href="../Auth/Profile.html">Profile</a></li>
+            <li>
+                <span>Hi, ${UserData.userInfo.fullName}</span>
+                <img src="${UserData.userInfo.avatar}" alt="${UserData.userInfo.fullName}">
+            </li>
            
         `
     }
@@ -24,3 +28,9 @@ window.addEventListener("DOMContentLoaded",()=>{
         `
     }
 })
+
+
+function logout(){
+    localStorage.removeItem("UserData");
+    window.location.href = "./Auth.html";
+}

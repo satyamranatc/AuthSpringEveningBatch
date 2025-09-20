@@ -16,10 +16,10 @@ public class WebSecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-            .csrf(csrf -> csrf.disable()) // disable CSRF for APIs
+            .csrf(csrf -> csrf.disable()).cors().and() // disable CSRF for APIs
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/api/auth/**").permitAll() // allow register & login
-                .anyRequest().authenticated()
+                .anyRequest().permitAll()
             ).addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
